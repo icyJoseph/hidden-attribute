@@ -69,21 +69,19 @@ export function Bitcoin() {
   return (
     <div>
       <h4>
-        Bitcoin the last 30 days, <br /> in 1000 SEK
+        Bitcoin price the last 31 days, <br /> in 1000 SEK
       </h4>
       <VictoryChart>
         <VictoryScatter
           data={data}
           domain={{ y: yDomain }}
-          labels={datum => `${Math.round(datum.y / 1000)}k`}
+          labels={datum => Math.round(datum.y / 1000)}
           symbol={datum => symbols[Math.round(datum.y) % 7]}
           size={7}
           style={{
-            parent: {
-              backgroundColor: "#222"
-            },
             labels: {
               fontSize: 5,
+              fill: "white",
               lineHeight: 5,
               fontFamily: "Press Start 2P"
             },
@@ -95,7 +93,18 @@ export function Bitcoin() {
         <VictoryAxis
           tickCount={2}
           tickFormat={tickFormat}
-          style={{ tickLabels: { fontSize: 9, fontFamily: "Press Start 2P" } }}
+          style={{
+            axis: { stroke: "white" },
+            tickLabels: {
+              fontSize: 9,
+              fontFamily: "Press Start 2P",
+              fill: "white"
+            },
+            ticks: {
+              size: 5,
+              stroke: "white"
+            }
+          }}
         />
       </VictoryChart>
     </div>
