@@ -66,12 +66,15 @@ export function Bitcoin() {
     [all]
   );
 
+  const [current] = all.slice(-1);
+
   return (
     <div>
       <h4>
-        Bitcoin price the last 31 days, <br /> in 1000 SEK
+        Bitcoin price the last 31 days, <br /> in 1000 SEK.
       </h4>
-      <VictoryChart>
+      <span>Last: {Math.round(current / 1000)} x 1000 SEK</span>
+      <VictoryChart style={{ parent: { height: "auto" } }}>
         <VictoryScatter
           data={data}
           domain={{ y: yDomain }}
@@ -80,7 +83,7 @@ export function Bitcoin() {
           size={7}
           style={{
             labels: {
-              fontSize: 5,
+              fontSize: 6,
               fill: "white",
               lineHeight: 5,
               fontFamily: "Press Start 2P"
