@@ -9,11 +9,13 @@ export function Tabs({ children }) {
     () =>
       React.Children.map(
         children,
-        ({ props: { order, label, importance } }) => {
+        ({ props: { label, importance, title } }, index) => {
           return (
             <button
-              className={`nes-btn ${importance}`}
-              onClick={() => setCurrent(order)}
+              key={index}
+              className={`nes-btn ${importance} tab-btn`}
+              onClick={() => setCurrent(index)}
+              aria-label={title}
             >
               {label}
             </button>
@@ -23,15 +25,15 @@ export function Tabs({ children }) {
     []
   );
 
-  const tabs = React.Children.toArray(children).map(child => {
-    const {
-      props: { order }
-    } = child;
-
-    const isHidden = order !== currentTab.current;
+  const tabs = React.Children.toArray(children).map((child, index) => {
+    const isHidden = index !== currentTab.current;
     const enriched = { ...child, props: { ...child.props, isHidden } };
     return (
-      <div key={order} hidden={isHidden} className="nes-container with-title">
+      <div
+        key={index}
+        hidden={isHidden}
+        className="nes-container with-title is-dark"
+      >
         {enriched}
       </div>
     );
