@@ -10,7 +10,7 @@
     "deploy": "yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
