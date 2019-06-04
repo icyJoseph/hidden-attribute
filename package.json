@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development parcel src/index.html --open",
-    "build": "NODE_ENV=production parcel build dist/index.html --public-url ./"
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "deploy": "yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
   "license": "ISC",
