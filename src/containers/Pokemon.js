@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import useDebounce from "../hooks/useDebounce";
 
 const endpoint = "https://pokeapi.co/api/v2/type";
 
@@ -10,18 +11,6 @@ const idFromUrl = url => {
   const [id] = url.split("/").slice(-2, -1);
   return id;
 };
-
-export function useDebounce(query, delay) {
-  const [value, setValue] = React.useState(query);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setValue(query), delay);
-
-    return () => clearTimeout(timer);
-  }, [delay, query]);
-
-  return value;
-}
 
 export function Pokemon() {
   const [query, changeQuery] = React.useState("fire");
@@ -49,14 +38,14 @@ export function Pokemon() {
     <div>
       <input
         type="text"
-        className="nes-input"
+        className="nes-input is-dark"
         value={query}
         onChange={e => changeQuery(e.target.value)}
       />
-      <p className="nes-text is-success">Search: {debounced}</p>
+      <p className="nes-text is-success">Query: {debounced}</p>
       <div className="pokemon-container">
-        {data.map(({ pokemon: { name, url } }) => (
-          <div key={name} className="nes-container with-title">
+        {data.slice(0, 25).map(({ pokemon: { name, url } }) => (
+          <div key={name} className="nes-container with-title is-dark">
             <p className="title">{name}</p>
             <img
               className="pokemon-avatar is-large"
