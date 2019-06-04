@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 *,
@@ -16,13 +16,13 @@ body {
   line-height: 2;
 }
 
-.with-work-break {
+.with-word-break {
   word-break: break-word;
 }
 
 .container {
   max-width: 900px;
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -30,6 +30,11 @@ body {
 .tab-controls {
   text-align: left;
   margin: 2rem 0;
+}
+
+.tab-controls > .tab-btn {
+  height: 108px;
+  width: 108px;
 }
 
 .pokemon-container {
@@ -45,4 +50,23 @@ body {
 .pokemon-avatar {
   width: 128px;
   height: 128px;
+}
+
+.scroll-btn {
+  position: fixed;
+  bottom: -120px;
+  width: 64px;
+  height: 64px;
+  right: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.scroll-btn.active {
+  bottom: 25px;
+}
+
+.scroll-btn > span {
+  display: block;
+  transform: rotateZ(90deg);
 }
