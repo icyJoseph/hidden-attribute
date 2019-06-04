@@ -16,6 +16,10 @@ body {
   line-height: 2;
 }
 
+.with-work-break {
+  word-break: break-word;
+}
+
 .container {
   max-width: 900px;
   padding: 2rem;
@@ -26,4 +30,19 @@ body {
 .tab-controls {
   text-align: left;
   margin: 2rem 0;
+}
+
+.pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pokemon-container > div {
+  margin: 0.5rem;
+}
+
+.pokemon-avatar {
+  width: 128px;
+  height: 128px;
 }

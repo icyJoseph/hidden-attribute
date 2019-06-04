@@ -7,7 +7,7 @@ export function Tab({ isHidden, title, children, importance }) {
       <h3 className={`${!isHidden && "title"} nes-text ${importance}`}>
         {title}
       </h3>
-      <span className={`nes-text ${importance}`}>{children}</span>
+      <div className={`nes-text ${importance}`}>{children}</div>
     </>
   );
 }
