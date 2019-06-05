@@ -44,12 +44,12 @@ body {
 }
 
 .pokemon-container > div {
-  margin: 0.5rem;
+  margin: 0.75rem 0.5rem;
 }
 
 .pokemon-avatar {
-  width: 128px;
-  height: 128px;
+  width: 100%;
+  image-rendering: pixelated;
 }
 
 .scroll-btn {
@@ -69,4 +69,11 @@ body {
 .scroll-btn > span {
   display: block;
   transform: rotateZ(90deg);
+}
+
+.with-background {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
 }

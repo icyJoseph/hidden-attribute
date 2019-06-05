@@ -44,20 +44,24 @@ export function Pokemon() {
       />
       <p className="nes-text is-success">Query: {debounced}</p>
       <div className="pokemon-container">
-        {data.slice(0, 25).map(({ pokemon: { name, url } }) => (
-          <div key={name} className="nes-container with-title is-dark">
-            <p className="title">{name}</p>
-            <img
-              className="pokemon-avatar is-large"
-              src={`${spriteUrl(idFromUrl(url))}`}
-              alt="🤔"
-              style={{ imageRendering: "pixelated" }}
-              onError={e => {
-                e.preventDefault();
+        {data.slice(0, 25).map(({ pokemon: { name, url } }, index) => {
+          const imgSrc = spriteUrl(idFromUrl(url));
+          const showImg = index % 2 === 0;
+          return (
+            <div
+              key={name}
+              className="nes-container with-title is-dark with-background"
+              style={{
+                backgroundImage: !showImg && `url(${imgSrc})`
               }}
-            />
-          </div>
-        ))}
+            >
+              <p className="title">{name}</p>
+              {showImg && (
+                <img className="pokemon-avatar" src={imgSrc} alt="🤔" />
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
