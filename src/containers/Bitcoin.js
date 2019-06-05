@@ -37,7 +37,9 @@ export function Bitcoin() {
   React.useEffect(() => {
     const source = axios.CancelToken.source();
     axios
-      .get(endpoint)
+      .get(endpoint, {
+        cancelToken: source.token
+      })
       .then(({ data: { bpi } }) => {
         const asEntries = Object.entries(bpi).map(([x, y]) => ({
           x,

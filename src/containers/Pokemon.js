@@ -14,14 +14,16 @@ const idFromUrl = url => {
 
 export function Pokemon() {
   const [query, changeQuery] = React.useState("fire");
-  const debounced = useDebounce(query);
+  const debounced = useDebounce(query, 500);
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
     if (!debounced) return setData([]);
     const source = axios.CancelToken.source();
     axios
-      .get(`${endpoint}/${debounced}`)
+      .get(`${endpoint}/${debounced}`, {
+        cancelToken: source.token
+      })
       .then(({ data: { pokemon } }) => {
         return setData(pokemon);
       })
@@ -29,9 +31,8 @@ export function Pokemon() {
         if (axios.isCancel(err)) {
           console.info(err.message);
         }
-        console.info(err);
       });
-    return () => source.cancel("Cancel BitCoin fetch");
+    return () => source.cancel("Cancel Pokemon fetch");
   }, [debounced]);
 
   return (

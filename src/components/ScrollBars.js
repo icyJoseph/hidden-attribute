@@ -7,7 +7,7 @@ import useDebounce from "../hooks/useDebounce";
 function ScrollBars({ children }) {
   const [osInstance, setOsInstance] = useState(null);
   const [active, setActive] = useState("");
-  const debounced = useDebounce(active);
+  const debounced = useDebounce(active, 200);
 
   useEffect(() => {
     const onScroll = e =>
