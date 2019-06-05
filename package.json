@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development parcel src/index.html --open",
+    "clean": "rm -rf dist",
     "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
-    "deploy": "yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
+    "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
   "license": "MIT",
