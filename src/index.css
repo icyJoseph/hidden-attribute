@@ -72,6 +72,7 @@ body {
 }
 
 .with-background {
+  min-height: 200px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
