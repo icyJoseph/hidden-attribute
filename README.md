@@ -25,7 +25,7 @@ Every time a React component mounts, updates or is unmounted, React executes two
 
 There is a cause-effect relation between these, however, when Concurrent Mode comes out, you'll be able to opt-in to have many render phases before a commit phase actually kicks in. The actual details of this are not clear, so do not think about them just yet.
 
-During the commit phase React makes changes to the DOM, after this, the [browser job](https://developers.google.com/web/fundamentals/performance/rendering/) is to apply CSS styles, layout calculations, paint pixels and compose your elements into layers.
+During the commit phase React makes changes to the DOM, after this, the [Browser's job](https://developers.google.com/web/fundamentals/performance/rendering/) is to apply CSS styles, layout calculations, paint pixels and compose your elements into layers.
 
 That's a lot of work!
 
