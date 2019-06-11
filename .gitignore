@@ -4,3 +4,4 @@ dist
 .cache
 **.png
 yarn-error.log
+assets
