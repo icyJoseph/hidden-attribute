@@ -25,24 +25,25 @@ export function Tabs({ children }) {
     []
   );
 
-  const tabs = React.Children.toArray(children).map((child, index) => {
-    const isHidden = index !== currentTab.current;
-    const enriched = { ...child, props: { ...child.props, isHidden } };
-    return (
-      <div
-        key={index}
-        hidden={isHidden}
-        className="nes-container with-title is-dark"
-      >
-        {enriched}
-      </div>
-    );
-  });
-
   return (
     <>
       <div className="tab-controls">{controls}</div>
-      {tabs}
+      {React.Children.toArray(children).map((child, index) => {
+        const isHidden = index !== currentTab.current;
+        const withHiddenProp = {
+          ...child,
+          props: { ...child.props, isHidden }
+        };
+        return (
+          <div
+            key={index}
+            hidden={isHidden}
+            className="nes-container with-title is-dark"
+          >
+            {withHiddenProp}
+          </div>
+        );
+      })}
     </>
   );
 }
