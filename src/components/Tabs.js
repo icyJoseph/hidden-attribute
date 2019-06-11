@@ -2,8 +2,6 @@ import React from "react";
 
 export function Tabs({ children }) {
   const [current, setCurrent] = React.useState(0);
-  const currentTab = React.useRef();
-  currentTab.current = current;
 
   const controls = React.useMemo(
     () =>
@@ -29,7 +27,7 @@ export function Tabs({ children }) {
       {React.Children.toArray(children).map((child, index) => (
         <div
           key={index}
-          hidden={index !== currentTab.current}
+          hidden={index !== current}
           className="nes-container with-title is-dark"
         >
           {child}
