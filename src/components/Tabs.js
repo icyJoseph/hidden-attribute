@@ -26,23 +26,15 @@ export function Tabs({ children }) {
   return (
     <>
       <div className="tab-controls">{controls}</div>
-      {React.Children.toArray(children).map((child, index) => {
-        const isHidden = index !== currentTab.current;
-        const withHiddenProp = {
-          ...child,
-          props: { ...child.props, isHidden }
-        };
-
-        return (
-          <div
-            key={index}
-            hidden={isHidden}
-            className="nes-container with-title is-dark"
-          >
-            {withHiddenProp}
-          </div>
-        );
-      })}
+      {React.Children.toArray(children).map((child, index) => (
+        <div
+          key={index}
+          hidden={index !== currentTab.current}
+          className="nes-container with-title is-dark"
+        >
+          {child}
+        </div>
+      ))}
     </>
   );
 }
