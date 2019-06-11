@@ -33,7 +33,7 @@ Luckily, there is a DOM attribute called `hidden`, which you can use to get Reac
 
 It is equivalent to display none, in fact, setting a display property on hidden elements overrides the attribute!
 
-Even though [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden) recommends not to use hidden to hide panels, it is a great example to show how to take advatange of this attribute.
+Even though [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden) recommends not to use hidden to hide panels, it is a great example to show how to take advantage of this attribute.
 
 In this demo, there are three tabs:
 
