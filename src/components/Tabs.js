@@ -34,13 +34,11 @@ export function Tabs({ children }) {
         };
 
         return (
-          <div
-            key={index}
-            hidden={isHidden}
-            className="nes-container with-title is-dark"
-          >
-            {withHiddenProp}
-          </div>
+          !isHidden && (
+            <div key={index} className="nes-container with-title is-dark">
+              {withHiddenProp}
+            </div>
+          )
         );
       })}
     </>
