@@ -9,18 +9,16 @@ export function Tabs({ children }) {
     () =>
       React.Children.map(
         children,
-        ({ props: { label, importance, title } }, index) => {
-          return (
-            <button
-              key={index}
-              className={`nes-btn ${importance} tab-btn`}
-              onClick={() => setCurrent(index)}
-              aria-label={title}
-            >
-              {label}
-            </button>
-          );
-        }
+        ({ props: { label, importance, title } }, index) => (
+          <button
+            key={index}
+            className={`nes-btn ${importance} tab-btn`}
+            onClick={() => setCurrent(index)}
+            aria-label={title}
+          >
+            {label}
+          </button>
+        )
       ),
     []
   );
@@ -34,6 +32,7 @@ export function Tabs({ children }) {
           ...child,
           props: { ...child.props, isHidden }
         };
+
         return (
           <div
             key={index}
