@@ -2,8 +2,6 @@ import React from "react";
 
 export function Tabs({ children }) {
   const [current, setCurrent] = React.useState(0);
-  const currentTab = React.useRef();
-  currentTab.current = current;
 
   const controls = React.useMemo(
     () =>
@@ -28,7 +26,7 @@ export function Tabs({ children }) {
       <div className="tab-controls">{controls}</div>
       {React.Children.toArray(children).map(
         (child, index) =>
-          index === currentTab.current && (
+          index === current && (
             <div key={index} className="nes-container with-title is-dark">
               {child}
             </div>
