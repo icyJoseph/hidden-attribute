@@ -14,6 +14,7 @@ function ScrollBars({ children }) {
       e.target.scrollTop > 100 ? setActive("active") : setActive("");
     setOsInstance(
       OverlayScrollbars(document.body, {
+        autoUpdate: true,
         callbacks: { onScroll }
       })
     );
