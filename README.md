@@ -8,6 +8,8 @@ Demo available [here](https://hidden-attribute.surge.sh/).
 
 ## About
 
+[Article.](https://medium.com/evolve-technology/hide-that-da6264a7e1f)
+
 This repository exists for educational purposes only.
 
 It uses [nes.css](https://nostalgic-css.github.io/NES.css/) as styling library.
