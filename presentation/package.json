@@ -1,0 +1,19 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:slides": "mdx-deck deck.mdx",
+    "build:slides": "mdx-deck build deck.mdx",
+    "export:slides": "mdx-deck-export pdf deck.mdx"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@mdx-deck/export": "^2.3.2",
+    "mdx-deck": "^2.3.2",
+    "react-syntax-highlighter": "^11.0.2"
+  }
+}
