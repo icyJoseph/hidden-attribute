@@ -1,0 +1,104 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.fallback {
+  margin: 2em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.about {
+  display: flex;
+  background: white;
+  color: black;
+  align-self: center;
+  margin-top: 2em;
+}
+
+.about-img {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-desc {
+  display: flex;
+  flex: 3;
+}
+
+.about-img > img {
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+}
+
+.about div {
+  padding: 0.25em;
+}
+
+.search-bar {
+  --buttonHeight: 2em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1em;
+  width: 100%;
+  color: white;
+}
+
+.search-bar > input {
+  border: none;
+  text-align: center;
+  background: transparent;
+  color: inherit;
+  width: 50%;
+  margin: 0 auto;
+  font-size: 2em;
+  border-bottom: 1px solid white;
+}
+
+.search-bar > button {
+  position: absolute;
+  border: 0;
+  border-radius: 8px;
+  background: white;
+  color: black;
+  font-size: inherit;
+  width: var(--buttonHeight);
+  left: 75%;
+  transform: translateY(calc(-2 * var(--buttonHeight)));
+  height: var(--buttonHeight);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.search-bar > input:focus,
+.search-bar > button:focus {
+  outline: none;
+}
+
+.search-bar > input::placeholder {
+  color: #313131;
+}
+
+.search-bar > input:not(:placeholder-shown) ~ button {
+  transform: translateY(0);
+}
+
+.screen-reader {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
