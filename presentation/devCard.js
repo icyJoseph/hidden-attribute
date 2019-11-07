@@ -10,7 +10,6 @@ async function fetchUser(user) {
     const data = await fetch(`https://api.github.com/users/${user}`).then(
       res => {
         if (res.status === 404) {
-        //   localStorage.setItem(user, JSON.stringify({ login: null }));
           throw new Error("Not found");
         }
         return res.json();
@@ -18,6 +17,22 @@ async function fetchUser(user) {
     );
 
     localStorage.setItem(user, JSON.stringify(data));
+    return data;
+  }
+  return JSON.parse(stored);
+}
+
+async function fetchOrg(orgUrl) {
+  if (!orgUrl) {
+    return { login: null };
+  }
+  const stored = localStorage.getItem(orgUrl);
+  if (!stored) {
+    const data = await fetch(orgUrl).then(res => {
+      return res.json();
+    });
+
+    localStorage.setItem(orgUrl, JSON.stringify(data));
     return data;
   }
   return JSON.parse(stored);
@@ -47,34 +62,63 @@ class ErrorBound extends React.Component {
   }
 }
 
-export const useDevData = dev => {
-  const { data = { login: null } } = useSWR(dev, fetchUser, {
-    shouldRetryOnError: false,
-    suspense: true,
-    revalidateOnFocus: false
-  });
+const swrOpts = {
+  shouldRetryOnError: false,
+  suspense: true,
+  revalidateOnFocus: false
+};
+const useDevData = dev => {
+  const { data = { login: null } } = useSWR(dev, fetchUser, swrOpts);
 
   return data;
 };
 
+const useOrganizations = url => {
+  const { data = [] } = useSWR(url, fetchOrg, swrOpts);
+  return data;
+};
+
+const OrganizationsAvatars = ({ url }) => {
+  const orgs = useOrganizations(url);
+  return orgs.map(({ avatar_url, login }) => (
+    <img key={login} src={avatar_url} alt={login} className="org-img" />
+  ));
+};
+
 export const Card = ({ user }) => {
-  const { avatar_url, login, name, bio, hireable } = useDevData(user);
+  const {
+    avatar_url,
+    company,
+    login,
+    name,
+    bio,
+    hireable,
+    organizations_url
+  } = useDevData(user);
 
   return (
     login && (
-      <div className="about">
-        <div className="about-img">
-          <img src={avatar_url} alt={login} />
-        </div>
-        <div className="about-desc">
-          <div>
-            <h6>{name}</h6>
-            <p>
-              <code>@{login}</code>
-            </p>
-            <p>{bio}</p>
-            <p>Happily Employed? {hireable ? "Yes" : "No"}</p>
+      <div className="card">
+        <div className="about">
+          <div className="about-img">
+            <img src={avatar_url} alt={login} />
           </div>
+          <div className="about-desc">
+            <div>
+              <h6>{name}</h6>
+              <p>
+                <code>@{login}</code>
+              </p>
+              <p>{bio}</p>
+              <p>Happily Employed? {hireable ? "Yes" : "No"}</p>
+              <p>by: {company}</p>
+            </div>
+          </div>
+        </div>
+        <div className="organizations">
+          <React.Suspense fallback={null}>
+            <OrganizationsAvatars url={organizations_url} />
+          </React.Suspense>
         </div>
       </div>
     )
@@ -84,6 +128,14 @@ export const Card = ({ user }) => {
 const DevCard = () => {
   const [user, setUser] = React.useState("");
   const _input = React.useRef();
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      if (user) {
+        _input.current.value = "";
+      }
+    }, 1000);
+  }, [user]);
 
   const handleSubmit = e => {
     e.preventDefault();
