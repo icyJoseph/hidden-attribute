@@ -110,7 +110,7 @@ export const Card = ({ user }) => {
                 <code>@{login}</code>
               </p>
               <p>{bio}</p>
-              <p>Happily Employed? {hireable ? "Yes" : "No"}</p>
+              <p>Happily Employed? {hireable ? "No" : "Yes"}</p>
               <p>by: {company}</p>
             </div>
           </div>
