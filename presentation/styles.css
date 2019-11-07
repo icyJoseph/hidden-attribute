@@ -12,6 +12,24 @@ p {
   margin: 2em;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 1;
+  align-self: center;
+  max-width: 80%;
+}
+
+.organizations {
+  display: flex;
+  justify-content: center;
+}
+
+.organizations > * {
+  margin: 1em;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -20,10 +38,8 @@ p {
 
 .about {
   display: flex;
-  background: white;
-  color: black;
-  align-self: center;
-  margin-top: 2em;
+  /* background: white; */
+  /* color: black; */
 }
 
 .about-img {
@@ -44,6 +60,11 @@ p {
   border-radius: 50%;
 }
 
+.org-img {
+  height: 2em;
+  width: 2em;
+}
+
 .about div {
   padding: 0.25em;
 }
@@ -54,7 +75,7 @@ p {
   align-items: center;
   position: relative;
   margin-top: 1em;
-  width: 100%;
+  width: 100vw;
   color: white;
 }
 
@@ -63,7 +84,7 @@ p {
   text-align: center;
   background: transparent;
   color: inherit;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   font-size: 2em;
   border-bottom: 1px solid white;
@@ -77,11 +98,11 @@ p {
   color: black;
   font-size: inherit;
   width: var(--buttonHeight);
-  left: 75%;
+  left: 80%;
   transform: translateY(calc(-2 * var(--buttonHeight)));
   height: var(--buttonHeight);
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.5s cubic-bezier(0.03, 0.77, 0.06, 1.01);
 }
 
 .search-bar > input:focus,
