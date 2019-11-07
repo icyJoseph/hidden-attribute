@@ -133,8 +133,9 @@ const DevCard = () => {
     setTimeout(() => {
       if (user) {
         _input.current.value = "";
+        _input.current.blur();
       }
-    }, 1000);
+    }, 3000);
   }, [user]);
 
   const handleSubmit = e => {
