@@ -80,20 +80,25 @@ const useOrganizations = url => {
 
 const OrganizationsAvatars = ({ url }) => {
   const orgs = useOrganizations(url);
-  return orgs.map(({ avatar_url, login }) => (
-    <img key={login} src={avatar_url} alt={login} className="org-img" />
+  return orgs.map(({ avatar_url, login, description }) => (
+    <div key={login} className="org">
+      <h5>{login}</h5>
+      <img src={avatar_url} alt={login} className="org-img" />
+      <span>{description}</span>
+    </div>
   ));
 };
 
 export const Card = ({ user }) => {
   const {
     avatar_url,
-    company,
     login,
     name,
     bio,
     hireable,
-    organizations_url
+    organizations_url,
+    public_repos,
+    followers
   } = useDevData(user);
 
   return (
@@ -101,18 +106,18 @@ export const Card = ({ user }) => {
       <div className="card">
         <div className="about">
           <div className="about-img">
+            <h5>{name}</h5>
             <img src={avatar_url} alt={login} />
+            <p>{bio}</p>
           </div>
           <div className="about-desc">
-            <div>
-              <h6>{name}</h6>
-              <p>
-                <code>@{login}</code>
-              </p>
-              <p>{bio}</p>
-              <p>Happily Employed? {hireable ? "No" : "Yes"}</p>
-              <p>by: {company}</p>
-            </div>
+            <p>
+              <code>@{login}</code>
+            </p>
+            <p>Happily Employed? {hireable ? "No" : "Yes"}</p>
+            <p>
+              {followers} followers / {public_repos} repos
+            </p>
           </div>
         </div>
         <div className="organizations">
@@ -129,18 +134,11 @@ const DevCard = () => {
   const [user, setUser] = React.useState("");
   const _input = React.useRef();
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      if (user) {
-        _input.current.value = "";
-        _input.current.blur();
-      }
-    }, 3000);
-  }, [user]);
-
   const handleSubmit = e => {
     e.preventDefault();
     setUser(_input.current.value);
+    _input.current.value = "";
+    _input.current.blur();
   };
 
   return (
