@@ -19,6 +19,7 @@ p {
   flex: 1;
   align-self: center;
   max-width: 80%;
+  font-size: 0.75em;
 }
 
 .organizations {
@@ -42,22 +43,35 @@ p {
   /* color: black; */
 }
 
-.about-img {
+.about-img,
+.about-desc,
+.org {
   display: flex;
   flex: 1;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.about-desc {
-  display: flex;
-  flex: 3;
+.about-img {
+  font-size: 0.75em;
 }
 
 .about-img > img {
   height: 4em;
   width: 4em;
   border-radius: 50%;
+}
+
+.org {
+  font-size: 0.75em;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.about-img > *,
+.org > * {
+  margin: 0.25em;
 }
 
 .org-img {
@@ -76,6 +90,7 @@ p {
   position: relative;
   margin-top: 1em;
   width: 100vw;
+  font-size: 0.75em;
   color: white;
 }
 
@@ -102,7 +117,7 @@ p {
   transform: translateY(calc(-2 * var(--buttonHeight)));
   height: var(--buttonHeight);
   cursor: pointer;
-  transition: 0.5s cubic-bezier(0.03, 0.77, 0.06, 1.01);
+  transition: 1s 0.25s ease-in-out;
 }
 
 .search-bar > input:focus,
