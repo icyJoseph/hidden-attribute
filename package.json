@@ -1,13 +1,14 @@
 {
   "name": "hidden-attr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Using the hidden attribute to balance performance with user experience.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development parcel src/index.html --open",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist/*",
     "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "audit:build": "yarn clean && yarn build && concurrently \"serve -s ./dist\"  \"lighthouse \"http://localhost:5000\" --view\"",
     "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
@@ -17,7 +18,9 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "parcel-bundler": "^1.12.3"
+    "concurrently": "^5.0.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-robot": "^1.0.0"
   },
   "dependencies": {
     "axios": "^0.19.0",
