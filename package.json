@@ -8,12 +8,14 @@
     "dev": "parcel",
     "clean": "rm -rf dist",
     "build": "parcel build src/index.html --public-url ./",
+    "audit:build": "yarn clean && yarn build && concurrently \"serve -s ./dist\"  \"lighthouse \"http://localhost:5000\" --view\"",
     "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "parcel": "2.3.1"
+    "parcel": "2.3.1",
+    "concurrently": "^5.0.0"
   },
   "dependencies": {
     "axios": "0.25.0",
