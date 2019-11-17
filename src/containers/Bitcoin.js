@@ -4,7 +4,6 @@ import {
   VictoryChart,
   VictoryScatter,
   VictoryAxis,
-  VictoryLabel
 } from "victory";
 
 const endpoint =
@@ -68,7 +67,7 @@ export function Bitcoin() {
     [all]
   );
 
-  const [current] = all.slice(-1);
+  const [current = 0] = all.slice(-1);
 
   return (
     <div>
