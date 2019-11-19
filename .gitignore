@@ -3,5 +3,6 @@ build
 dist
 .parcel-cache
 **.png
+**.jpg
 yarn-error.log
 assets
