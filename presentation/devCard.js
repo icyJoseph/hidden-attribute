@@ -116,7 +116,8 @@ export const Card = ({ user }) => {
             </p>
             <p>Happily Employed? {hireable ? "No" : "Yes"}</p>
             <p>
-              {followers} followers / {public_repos} repos
+              <code>{followers}</code> followers <br />{" "}
+              <code>{public_repos}</code> public repos
             </p>
           </div>
         </div>

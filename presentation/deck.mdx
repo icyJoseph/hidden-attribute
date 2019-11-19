@@ -2,29 +2,147 @@ export { condensed as theme } from "mdx-deck/themes";
 import { Appear, Notes, Image, useDeck } from "mdx-deck";
 import { Horizontal } from "mdx-deck/layouts";
 import DevCard from "./devCard";
-import Canvas from "./canvas";
+import Timer from "./timer";
 import "./styles.css";
 
 <DevCard />
 
 ---
 
-# Phases
-
-- Render Phase
-- Commit Phase
+<img
+  src="./github_followers.jpg"
+  alt="Github followers"
+  width="400px"
+  height="400px"
+/>
+<Timer />
 
 ---
 
-# Data
+## Chasing Performance 🦄
 
-<ul>
+Our setup:
+
+<Appear>
+  <ul>
+    <li>14 Endpoints</li>
+    <li>300+ parameters</li>
+    <li>200 - 1000 entries</li>
+    <li>Data dependend on other data</li>
+  </ul>
+  <span>React + Redux Sagas + Immutable.js</span>
+</Appear>
+<Timer />
+
+---
+
+## All comes down to
+
+<div className="centered-content">
+  <code className="large">HTML + CSS</code>
+</div>
+<Appear>
+  <span>
+    Understand how our <br />
+    React Components
+    <br />
+    contribute to the equation
+  </span>
+</Appear>
+<Timer />
+
+---
+
+## Pixel Pipeline
+
+<img src="./frame_full.jpg" alt="Pixel Pipeline" width="900px" />
+
+📝 [Article](https://developers.google.com/web/fundamentals/performance/rendering/)
+
+<Timer />
+
+---
+
+## React Phases
+
+- Render
+- Commit
+
+<Appear>
+  <span>
+    Can we commit without triggering <br /> style, layout, etc.?
+  </span>
+</Appear>
+<Timer />
+
+---
+
+## Example
+
+### 3 Tabs
+
+- Landing
+- BitCoin rate 💸 using Victory Charts 📦
+- Pokemon 🦄 Type search
+
+<Timer />
+
+---
+
+## Tooling
+
+- Hidden Attribute [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)
+- Suspense
+- Fetch on Render
+
+<Timer />
+
+---
+
+## Options
+
+<ol>
   <Appear>
-    <li>Fetch on Render</li>
-    <li>Fetch then Render</li>
-    <li>Render as you Fetch</li>
+    <li>Render 💸 and 🦄 using boolean flags </li>
+    <li>Render everything, but apply the hidden attribute to 💸 and 🦄</li>
+    <li>Use display none on 💸 and 🦄</li>
+    <li>Everything on the same page (who likes tabs anyway)</li>
   </Appear>
-</ul>
+</ol>
+<Timer />
+
+---
+
+## UX vs Performance
+
+<Timer />
+
+---
+
+## Reduce state
+
+Since the Pokemon Tab, never really unmounts,<br/>
+we do not lose the query state when switching away.
+
+> As react devs, we manage state, and one <br/> way to manage it, is to get rid of it!
+
+<Timer />
+
+---
+
+## Does it work?
+
+- We do stop the pixel pipeline!
+- It is scalable and can be used in production!
+
+<Timer />
+
+---
+
+## Articles
+
+<img src="./medium_reads.png" alt="Medium Reads" width="900px" height="400px" />
+<Timer />
 
 ---
 
@@ -35,20 +153,14 @@ import "./styles.css";
 - useMemo: returns a value
 - useCallback: returns a function
 
----
-
-# Lazy Tabs
+<Timer />
 
 ---
 
 # Using the Hidden Attr
 
+- Inspiration from [here](https://github.com/oliviertassinari/react-swipeable-views/issues/453#issuecomment-417939459)
+
 📝 [Article](https://medium.com/evolve-technology/hide-that-da6264a7e1f)
 
----
-
-# Example
-
----
-
-# Suspense List
+<Timer />

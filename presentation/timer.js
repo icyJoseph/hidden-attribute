@@ -1,13 +1,34 @@
 import React from "react";
 
-const Timer = () => {
-  const [count, setCount] = React.useState(0);
-  React.useEffect(() => {
-    const timer = setTimeout(() => setCount(10), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+import { useDeck } from "mdx-deck";
+import Evolve from "./evolve";
 
-  return <div>{count}</div>;
+const TOTAL_TIME = 5 * 60 * 1000;
+
+const Timer = () => {
+  const state = useDeck();
+  const [start, setStart] = React.useState(false);
+
+  const TIME_PER_SLIDE = Math.floor(TOTAL_TIME / state.length);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setStart(true), TIME_PER_SLIDE * 0.75);
+    return () => clearTimeout(timer);
+  }, [TIME_PER_SLIDE]);
+
+  return (
+    start && (
+      <>
+        <canvas
+          id="img-canvas"
+          className="evolve-logo"
+          width="100"
+          height="100"
+        />
+        <Evolve />
+      </>
+    )
+  );
 };
 
 export default Timer;

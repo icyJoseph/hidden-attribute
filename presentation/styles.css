@@ -8,6 +8,16 @@ p {
   margin: 0;
 }
 
+*[data-vanish="vanish"] {
+  animation: vanish 1s forwards;
+}
+
+@keyframes vanish {
+  to {
+    opacity: 0;
+  }
+}
+
 .fallback {
   margin: 2em;
 }
@@ -22,13 +32,26 @@ p {
   font-size: 0.75em;
 }
 
+.centered-content,
 .organizations {
   display: flex;
   justify-content: center;
 }
 
+.centered-content > pre.large {
+  font-size: 2em;
+}
+
 .organizations > * {
   margin: 1em;
+}
+
+.evolve-logo {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  width: 100px;
+  height: 100px;
 }
 
 .content {
