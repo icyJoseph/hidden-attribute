@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import useDebounce from "../hooks/useDebounce";
 
-const endpoint = "https://pokeapi.co/api/v2/type";
-
 const spriteUrl = id =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
@@ -11,6 +9,16 @@ const idFromUrl = url => {
   const [id] = url.split("/").slice(-2, -1);
   return id;
 };
+
+const pokeService = axios.create({
+  baseURL: "https://pokeapi.co/api/v2/type",
+});
+
+pokeService.interceptors.request.use(config => {
+  return new Promise(resolve =>
+    setTimeout(() => resolve(config), 6000)
+  );
+});
 
 export function Pokemon() {
   const [query, changeQuery] = React.useState("fire");
@@ -20,8 +28,8 @@ export function Pokemon() {
   React.useEffect(() => {
     if (!debounced) return setData([]);
     const source = axios.CancelToken.source();
-    axios
-      .get(`${endpoint}/${debounced}`, {
+    pokeService
+      .get(`/${debounced}`, {
         cancelToken: source.token
       })
       .then(({ data: { pokemon } }) => {
