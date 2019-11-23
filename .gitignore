@@ -6,3 +6,5 @@ dist
 **.jpg
 yarn-error.log
 assets
+results
+stats
