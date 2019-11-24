@@ -23,7 +23,7 @@ export function App() {
           <Tab label={<BitCoinLabel />} title="Bitcoin" importance="is-success">
             <SuspenseBitcoin />
           </Tab>
-          <Tab label={<PokemonLabel />} title="Pokemon" importance="is-error">
+          <Tab label={<PokemonLabel />} title="Pokémon" importance="is-error">
             <SuspensePokemon />
           </Tab>
         </Tabs>
