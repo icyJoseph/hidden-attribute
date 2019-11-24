@@ -14,8 +14,11 @@ const pokeService = axios.create({
   baseURL: "https://pokeapi.co/api/v2/type"
 });
 
+const DELAY = 5000;
+const TIMEOUT = 2500;
+
 pokeService.interceptors.request.use(config => {
-  return new Promise(resolve => setTimeout(() => resolve(config), 5000));
+  return new Promise(resolve => setTimeout(() => resolve(config), DELAY));
 });
 
 export function Pokemon() {
@@ -27,7 +30,7 @@ export function Pokemon() {
   React.useEffect(() => {
     if (!debounced) return setData([]);
     const source = axios.CancelToken.source();
-    const timer = setTimeout(() => setLoading(true), 2500);
+    const timer = setTimeout(() => setLoading(true), TIMEOUT);
     pokeService
       .get(`/${debounced}`, {
         cancelToken: source.token
