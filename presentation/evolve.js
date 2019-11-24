@@ -1,6 +1,6 @@
 import React from "react";
 
-const Evolve = () => {
+const Evolve = ({ canvasId }) => {
   const width = 200;
   const height = 200;
   const [row, setRow] = React.useState(height);
@@ -11,7 +11,7 @@ const Evolve = () => {
   };
 
   function animate() {
-    const canvas = document.getElementById("img-canvas");
+    const canvas = document.getElementById(canvasId);
     const context = canvas.getContext("2d");
     context.drawImage(_ref.current, 0, row, width, 1, 0, 0, width / 2, row / 2);
     setRow(x => (x === 0 ? 0 : x - 1));
@@ -26,8 +26,7 @@ const Evolve = () => {
 
   return (
     <img
-      hidden
-      className="evolve-logo"
+      className="evolve-img"
       src="./evolve.png"
       alt="Evolve"
       onLoad={onLoad}
