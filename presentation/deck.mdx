@@ -2,6 +2,7 @@ export { condensed as theme } from "mdx-deck/themes";
 import { Appear, Notes, Image, useDeck } from "mdx-deck";
 import { Horizontal } from "mdx-deck/layouts";
 import DevCard from "./devCard";
+import Charts from "./charts";
 import Timer from "./timer";
 import "./styles.css";
 
@@ -82,8 +83,8 @@ Our setup:
 ### 3 Tabs
 
 - Landing
-- BitCoin rate 💸 using Victory Charts 📦
-- Pokemon 🦄 Type search
+- BitCoin rate, using [Victory Charts](https://formidable.com/open-source/victory/)
+- Pokemon type search 🔎
 
 <Timer />
 
@@ -103,12 +104,20 @@ Our setup:
 
 <ol>
   <Appear>
-    <li>Render 💸 and 🦄 using boolean flags </li>
-    <li>Render everything, but apply the hidden attribute to 💸 and 🦄</li>
-    <li>Use display none on 💸 and 🦄</li>
+    <li>Render tabs using boolean flags </li>
+    <li>Using hidden</li>
+    <li>Using CSS display</li>
+    <li>Using CSS visibility</li>
     <li>Everything on the same page (who likes tabs anyway)</li>
   </Appear>
 </ol>
+<Timer />
+
+---
+
+## Does it work?
+
+<Charts />
 <Timer />
 
 ---
@@ -125,15 +134,6 @@ Since the Pokemon Tab, never really unmounts,<br/>
 we do not lose the query state when switching away.
 
 > As react devs, we manage state, and one <br/> way to manage it, is to get rid of it!
-
-<Timer />
-
----
-
-## Does it work?
-
-- We do stop the pixel pipeline!
-- It is scalable and can be used in production!
 
 <Timer />
 
