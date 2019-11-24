@@ -79,8 +79,6 @@ body {
   image-rendering: pixelated;
 }
 
-.loader-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.stale {
+  opacity: 0.4;
 }

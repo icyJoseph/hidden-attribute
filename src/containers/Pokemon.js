@@ -1,58 +1,84 @@
 import React from "react";
 import axios from "axios";
-import useDebounce from "../hooks/useDebounce";
+import PokeCard from "../components/PokeCard";
+import { wrapPromise } from "../utils";
 
-const spriteUrl = id =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
-const idFromUrl = url => {
-  const [id] = url.split("/").slice(-2, -1);
-  return id;
-};
+const DELAY = 6000;
+const TIMEOUT = 3000;
 
 const pokeService = axios.create({
   baseURL: "https://pokeapi.co/api/v2/type"
 });
 
-const DELAY = 5000;
-const TIMEOUT = 2500;
-
 pokeService.interceptors.request.use(config => {
   return new Promise(resolve => setTimeout(() => resolve(config), DELAY));
 });
 
-export function Pokemon() {
-  const [query, changeQuery] = React.useState("fire");
-  const debounced = useDebounce(query, 500);
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!debounced) return setData([]);
-    const source = axios.CancelToken.source();
-    const timer = setTimeout(() => setLoading(true), TIMEOUT);
+function fetchPokemonByType(query) {
+  const source = axios.CancelToken.source();
+  return wrapPromise(
     pokeService
-      .get(`/${debounced}`, {
-        cancelToken: source.token
-      })
-      .then(({ data: { pokemon } }) => {
-        return setData(pokemon);
-      })
-      .catch(err => {
-        if (axios.isCancel(err)) {
-          console.info(err.message);
+      .get(`/${query}`, { cancelToken: source.token })
+      .then(({ data: { pokemon, results } }) => {
+        if (pokemon) {
+          return pokemon.map(({ pokemon: { name, url } }) => ({ name, url }));
         }
-        return setData([]);
-      });
-    return () => {
-      source.cancel("Cancel Pokemon fetch");
-      clearTimeout(timer);
-    };
-  }, [debounced]);
+        return results;
+      })
+      .catch(() => {
+        return [];
+      }),
+    source
+  );
+}
 
-  React.useEffect(() => {
-    setLoading(false);
-  }, [data]);
+const PokemonTypes = ({ resource, isStale }) => {
+  return (
+    <div className={`pokemon-container ${isStale ? "stale" : ""}`}>
+      {resource
+        .read()
+        .slice(0, 25)
+        .map(({ name, url }, index) => (
+          <PokeCard
+            key={name}
+            name={name}
+            url={url}
+            showImg={index % 2 === 0}
+          />
+        ))}
+    </div>
+  );
+};
+
+const INIT_TYPE = "fire";
+const initialResource = fetchPokemonByType(INIT_TYPE);
+
+export function Pokemon() {
+  const [query, changeQuery] = React.useState(INIT_TYPE);
+  const [resource, setResource] = React.useState(initialResource);
+  const [startTransition, isPending] = React.useTransition({
+    timeoutMs: TIMEOUT
+  });
+
+  const _ref = React.useRef();
+
+  const handleChange = e => {
+    const query = e.target.value;
+    if (_ref.current) {
+      _ref.current.cancel();
+    }
+    changeQuery(query);
+    startTransition(() => {
+      _ref.current = fetchPokemonByType(query);
+      setResource(_ref.current);
+    });
+  };
+
+  const deferredResource = React.useDeferredValue(resource, {
+    timeoutMs: TIMEOUT
+  });
+
+  const isStale = resource !== deferredResource;
 
   return (
     <div>
@@ -60,36 +86,13 @@ export function Pokemon() {
         type="text"
         className="nes-input is-dark"
         value={query}
-        onChange={e => changeQuery(e.target.value)}
+        onChange={handleChange}
       />
-      <p className="nes-text is-success">Query: {debounced}</p>
-      {loading ? (
-        <div className="loader-container">
-          <span>Loading</span>
-          <i className="nes-octocat animate" />
-        </div>
-      ) : (
-        <div className="pokemon-container">
-          {data.slice(0, 25).map(({ pokemon: { name, url } }, index) => {
-            const imgSrc = spriteUrl(idFromUrl(url));
-            const showImg = index % 2 === 0;
-            return (
-              <div
-                key={name}
-                className="nes-container with-title is-dark with-background"
-                style={{
-                  backgroundImage: !showImg && `url(${imgSrc})`
-                }}
-              >
-                <p className="title">{name}</p>
-                {showImg && (
-                  <img className="pokemon-avatar" src={imgSrc} alt="🤔" />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <p className="nes-text is-success">Query: {query}</p>
+      {isPending && <span>Pending...</span>}
+      <React.Suspense fallback={<i className="nes-octocat animate" />}>
+        <PokemonTypes resource={deferredResource} isStale={isStale} />
+      </React.Suspense>
     </div>
   );
 }

@@ -28,9 +28,9 @@
   "dependencies": {
     "axios": "^0.19.0",
     "overlayscrollbars": "^1.7.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "recharts": "^1.8.5",
+    "react": "0.0.0-experimental-5faf377df",
+    "react-dom": "0.0.0-experimental-5faf377df",
     "victory": "^32.2.3"
   }
 }
