@@ -1,10 +1,8 @@
 import React from "react";
 import { ResponsiveBar } from "@nivo/bar";
 
-import bars from "./bars.json";
-
-export const Charts = () => {
-  const [{ label: omit, ...rest }] = bars;
+export const Charts = ({ data }) => {
+  const [{ label: omit, ...rest }] = data;
   const keys = Object.keys(rest);
 
   const [, , other, , script] = keys;
@@ -13,7 +11,7 @@ export const Charts = () => {
     <div style={{ height: "70vh", width: "70vw" }}>
       <ResponsiveBar
         isInteractive={false}
-        data={bars}
+        data={data}
         keys={keys}
         indexBy="label"
         margin={{ top: 50, right: 150, bottom: 50, left: 70 }}
