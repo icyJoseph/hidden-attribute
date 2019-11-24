@@ -8,6 +8,7 @@ const TOTAL_TIME = 5 * 60 * 1000;
 const Timer = () => {
   const state = useDeck();
   const [start, setStart] = React.useState(false);
+  const [flood, setFlood] = React.useState(false);
   const [buffer, setBuffer] = React.useState([]);
   const _container = React.useRef();
 
@@ -20,6 +21,13 @@ const Timer = () => {
 
   React.useEffect(() => {
     if (start) {
+      const timer = setTimeout(() => setFlood(true), 20 * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [start]);
+
+  React.useEffect(() => {
+    if (flood) {
       const offset = _container.current.offsetTop;
       if (offset > -600) {
         const interval = setInterval(
@@ -29,7 +37,7 @@ const Timer = () => {
         return () => clearInterval(interval);
       }
     }
-  }, [start, buffer]);
+  }, [flood, buffer]);
 
   return (
     start && (
