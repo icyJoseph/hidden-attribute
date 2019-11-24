@@ -1,0 +1,38 @@
+[
+  {
+    "label": "landing",
+    "First Contentful Paint": 2396,
+    "First Meaningful Paint": 2396,
+    "Page load is fast enough on mobile networks": 2561
+  },
+  {
+    "label": "visibility",
+    "First Contentful Paint": 2348,
+    "First Meaningful Paint": 2349,
+    "Page load is fast enough on mobile networks": 4703
+  },
+  {
+    "label": "hidden",
+    "First Contentful Paint": 2365,
+    "First Meaningful Paint": 2365,
+    "Page load is fast enough on mobile networks": 4751
+  },
+  {
+    "label": "display",
+    "First Contentful Paint": 2433,
+    "First Meaningful Paint": 2436,
+    "Page load is fast enough on mobile networks": 4710
+  },
+  {
+    "label": "bitcoin",
+    "First Contentful Paint": 2425,
+    "First Meaningful Paint": 2459,
+    "Page load is fast enough on mobile networks": 4699
+  },
+  {
+    "label": "all",
+    "First Contentful Paint": 2429,
+    "First Meaningful Paint": 2490,
+    "Page load is fast enough on mobile networks": 4778
+  }
+]
