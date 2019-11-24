@@ -1,13 +1,25 @@
 export { condensed as theme } from "mdx-deck/themes";
-import { Appear, Notes, Image, useDeck } from "mdx-deck";
+import { Appear, Notes, Image, useDeck, Head } from "mdx-deck";
 import { Horizontal } from "mdx-deck/layouts";
 import DevCard from "./devCard";
 import Charts from "./charts";
 import Timer from "./timer";
+import Renderer from "./renderToString";
+import {
+  hiddenSnippet,
+  displayNoneSnippet,
+  visibilitySnippet,
+  booleanFlagSnippet
+} from "./snippets";
 import "./styles.css";
 import bars from "./bars.json";
 import highlights from "./highlights.json";
 
+<Head>
+  <title>Evolve</title>
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <link rel="icon" href="./favicon.ico" />
+</Head>
 <DevCard />
 
 ---
@@ -117,6 +129,30 @@ The setup:
 
 ---
 
+## Hidden Attr
+
+<Renderer code={hiddenSnippet} fontSize="1rem" />
+
+---
+
+## Display None
+
+<Renderer code={displayNoneSnippet} fontSize="1rem" />
+
+---
+
+## Visibility
+
+<Renderer code={visibilitySnippet} fontSize="1rem" />
+
+---
+
+## Boolean Flag
+
+<Renderer code={booleanFlagSnippet} fontSize="1rem" />
+
+---
+
 ## Does it work?
 
 ---
@@ -137,7 +173,9 @@ The setup:
 
 ## UX vs Performance
 
-[Live 📑](https://hidden-attribute.surge.sh/)
+📑 [Live](https://hidden-attribute.surge.sh/)
+
+📄 [Slow Renders](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render/) - Kent C. Dodds
 
 <Timer />
 
@@ -148,7 +186,7 @@ The setup:
 Since the Pokemon Tab, never really unmounts,<br/>
 we do not lose the query state when switching away.
 
-> As react devs, we manage state, and one <br/> way to manage it, is to get rid of it!
+> Manage state by getting rid of it!
 
 <Timer />
 

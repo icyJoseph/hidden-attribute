@@ -14,7 +14,7 @@
   "devDependencies": {
     "@mdx-deck/export": "^2.3.2",
     "mdx-deck": "^2.3.2",
-    "react-syntax-highlighter": "^11.0.2"
+    "react-syntax-highlighter": "^10.3.0"
   },
   "dependencies": {
     "@nivo/bar": "^0.59.2",

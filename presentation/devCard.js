@@ -142,6 +142,13 @@ const DevCard = () => {
     _input.current.blur();
   };
 
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      _input.current.focus();
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="content">
       <form className="search-bar" onSubmit={handleSubmit}>
@@ -153,7 +160,6 @@ const DevCard = () => {
           type="text"
           ref={_input}
           placeholder="Who am I?"
-          autoFocus
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
