@@ -5,6 +5,8 @@ import DevCard from "./devCard";
 import Charts from "./charts";
 import Timer from "./timer";
 import "./styles.css";
+import bars from "./bars.json";
+import highlights from "./highlights.json";
 
 <DevCard />
 
@@ -22,14 +24,14 @@ import "./styles.css";
 
 ## Chasing Performance 🦄
 
-Our setup:
+The setup:
 
 <Appear>
   <ul>
     <li>14 Endpoints</li>
     <li>300+ parameters</li>
     <li>200 - 1000 entries</li>
-    <li>Data dependend on other data</li>
+    <li>Data dependent on other data</li>
   </ul>
   <span>React + Redux Sagas + Immutable.js</span>
 </Appear>
@@ -117,7 +119,18 @@ Our setup:
 
 ## Does it work?
 
-<Charts />
+---
+
+## Main Thread Work
+
+<Charts data={bars} />
+<Timer />
+
+---
+
+## FCP, FMP, PWA readiness
+
+<Charts data={highlights} />
 <Timer />
 
 ---

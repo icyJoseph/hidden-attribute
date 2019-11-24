@@ -46,10 +46,27 @@ p {
   margin: 1em;
 }
 
-.evolve-logo {
+.canvas-container {
   position: absolute;
-  bottom: 1em;
-  right: 1em;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+}
+
+.evolve-logo {
+  display: flex;
+  margin: 0.5em 0.25em;
+}
+
+.evolve-img {
+  opacity: 0;
+  margin: 0.5em 0.25em;
+}
+
+.evolve-canvas {
   width: 100px;
   height: 100px;
 }
