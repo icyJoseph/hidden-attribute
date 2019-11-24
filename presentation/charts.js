@@ -91,11 +91,11 @@ export const Charts = ({ data }) => {
                 fill: "#FFFFFF",
                 fontSize: "11pt"
               }
-            },
-            legend: {
-              text: {
-                fill: "#FFFFFF"
-              }
+            }
+          },
+          legend: {
+            text: {
+              fill: "#FFFFFF"
             }
           }
         }}

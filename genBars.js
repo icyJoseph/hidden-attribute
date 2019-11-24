@@ -2,12 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const all = require("./stats/all.json");
 const bitcoin = require("./stats/bitcoin.json");
+const classic = require("./stats/classic.json");
 const display = require("./stats/display.json");
 const hidden = require("./stats/hidden.json");
 const landing = require("./stats/landing.json");
 const visibility = require("./stats/visibility.json");
 
-const bars = [all, bitcoin, display, hidden, landing, visibility]
+const bars = [all, bitcoin, classic, display, hidden, landing, visibility]
   .map(({ averages, ...rest }) => ({
     ...rest,
     averages: averages.filter(({ score }) => !score)
@@ -35,7 +36,7 @@ fs.writeFile(
   }
 );
 
-const highlights = [all, bitcoin, display, hidden, landing, visibility]
+const highlights = [all, bitcoin, classic, display, hidden, landing, visibility]
   .map(({ averages, ...rest }) => ({
     ...rest,
     averages: averages.filter(({ score }) => score)
