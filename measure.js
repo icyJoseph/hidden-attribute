@@ -4,6 +4,9 @@ const path = require("path");
 
 const AUDITS = "audits";
 const WORK = "mainthread-work-breakdown";
+const FCP = "first-contentful-paint";
+const FMP = "first-meaningful-paint";
+const PWA = "load-fast-enough-for-pwa";
 
 const avg = arr =>
   arr.length ? arr.reduce((acc, curr) => acc + curr, 0) / arr.length : 0;
@@ -65,12 +68,36 @@ fs.readdir(path.join(__dirname, "./results"), async (_, dirs) => {
           prev,
           {
             [AUDITS]: {
+              [FCP]: { title: fcpTitle, numericValue: fcp, score: fcpScore },
+              [FMP]: { title: fmpTitle, numericValue: fmp, score: fmpScore },
+              [PWA]: { title: pwaTitle, numericValue: pwa, score: pwaScore },
               [WORK]: {
                 details: { items }
               }
             }
           }
-        ) => prev.concat(items),
+        ) =>
+          prev.concat([
+            ...items,
+            {
+              group: FCP,
+              groupLabel: fcpTitle,
+              duration: fcp,
+              score: fcpScore
+            },
+            {
+              group: FMP,
+              groupLabel: fmpTitle,
+              duration: fmp,
+              score: fmpScore
+            },
+            {
+              group: PWA,
+              groupLabel: pwaTitle,
+              duration: pwa,
+              score: pwaScore
+            }
+          ]),
         []
       )
       .reduce((acc, { group, duration, ...rest }) => {
@@ -81,9 +108,12 @@ fs.readdir(path.join(__dirname, "./results"), async (_, dirs) => {
             [group]: { ...data, duration: data.duration.concat(duration) }
           };
         }
-        return { ...acc, [group]: { group, duration: [duration], ...rest } };
+        return {
+          ...acc,
+          [group]: { group, duration: [duration], ...rest }
+        };
       }, {});
-
+    console.log(aggregate);
     const averages = Object.values(aggregate).map(({ duration, ...rest }) => ({
       ...rest,
       duration,
