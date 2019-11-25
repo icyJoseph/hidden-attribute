@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
     "clean": "rm -rf dist",
-    "lighthouse": "lighthouse \"http://localhost:5000\" --view",
+    "lighthouse": "lighthouse \"http://localhost:5000\" --chrome-flags=\"--headless\" --output json --output-path ./results/\"$(git rev-parse --abbrev-ref HEAD)\"/\"$(date +%Y-%m-%d_%H-%M-%S.json)\"",
     "build": "parcel build src/index.html --public-url ./",
     "build:audit": "yarn clean && yarn build && concurrently --kill-others \"yarn build:serve\" \"yarn lighthouse\"",
     "build:serve": "yarn serve -s ./dist",
