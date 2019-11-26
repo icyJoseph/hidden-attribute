@@ -38,7 +38,7 @@ const bars = [
   .map(({ avg, ...rest }) => ({ ...rest }));
 
 fs.writeFile(
-  path.join(__dirname, "./presentation/bars.json"),
+  path.join(__dirname, "./presentation/bars-recharts.json"),
   JSON.stringify(bars),
   err => {
     if (err) return console.log(err);
@@ -75,7 +75,7 @@ const highlights = [
   .map(({ avg, ...rest }) => ({ ...rest }));
 
 fs.writeFile(
-  path.join(__dirname, "./presentation/highlights.json"),
+  path.join(__dirname, "./presentation/highlights-recharts.json"),
   JSON.stringify(highlights),
   err => {
     if (err) return console.log(err);

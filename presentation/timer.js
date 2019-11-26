@@ -9,13 +9,13 @@ const Timer = () => {
   const state = useDeck();
   const [start, setStart] = React.useState(false);
   const [flood, setFlood] = React.useState(false);
-  const [buffer, setBuffer] = React.useState([]);
+  const [buffer, setBuffer] = React.useState([0]);
   const _container = React.useRef();
 
   const TIME_PER_SLIDE = Math.floor(TOTAL_TIME / state.length);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setStart(true), TIME_PER_SLIDE * 0.75);
+    const timer = setTimeout(() => setStart(true), TIME_PER_SLIDE * 0.90);
     return () => clearTimeout(timer);
   }, [TIME_PER_SLIDE]);
 
