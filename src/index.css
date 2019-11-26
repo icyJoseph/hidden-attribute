@@ -89,7 +89,7 @@ body {
 }
 
 @keyframes shake {
-  0 {
+  0% {
     transform: translate(0, 0) rotate(0);
   }
   20% {
