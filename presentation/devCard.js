@@ -142,13 +142,6 @@ const DevCard = () => {
     _input.current.blur();
   };
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      _input.current.focus();
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="content">
       <form className="search-bar" onSubmit={handleSubmit}>
