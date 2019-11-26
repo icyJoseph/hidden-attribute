@@ -52,7 +52,7 @@ export const Charts = ({ data }) => {
           }
         ]}
         borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
-        labelSkipHeight={6}
+        labelSkipHeight={12}
         labelTextColor={{ from: "color", modifiers: [["brighter", 2.6]] }}
         legends={[
           {
