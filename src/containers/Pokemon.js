@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import PokeCard from "../components/PokeCard";
-import { wrapPromise } from "../utils";
+import PokeCard, { fetchImage } from "../components/PokeCard";
+import { idFromUrl, spriteUrl, wrapPromise } from "../utils";
 
-const DELAY = 6000;
-const TIMEOUT = 3000;
+const DELAY = 4000;
+const TIMEOUT = 2500;
 
 const pokeService = axios.create({
   baseURL: "https://pokeapi.co/api/v2/type"
@@ -32,20 +32,23 @@ function fetchPokemonByType(query) {
   );
 }
 
-const PokemonTypes = ({ resource, isStale }) => {
+// tail="collapsed"
+
+const PokemonTypes = ({ resource, isStale, order = "forwards" }) => {
   return (
     <div className={`pokemon-container ${isStale ? "stale" : ""}`}>
-      {resource
-        .read()
-        .slice(0, 25)
-        .map(({ name, url }, index) => (
-          <PokeCard
-            key={name}
-            name={name}
-            url={url}
-            showImg={index % 2 === 0}
-          />
-        ))}
+      <React.SuspenseList revealOrder={order} tail={null}>
+        {resource
+          .read()
+          .slice(0, 25)
+          .map(({ name, url }, index, src) => {
+            const imgUrl = spriteUrl(idFromUrl(url));
+            const modifier =
+              order === "backwards" ? src.length - index : index + 1;
+            const resource = fetchImage(imgUrl, modifier);
+            return <PokeCard key={name} name={name} resource={resource} />;
+          })}
+      </React.SuspenseList>
     </div>
   );
 };
@@ -91,10 +94,16 @@ export function Pokemon() {
       <p className="nes-text is-success">Query: {query}</p>
       {isPending && <span>Pending...</span>}
       <React.Suspense fallback={<i className="nes-octocat animate" />}>
-        <PokemonTypes resource={deferredResource} isStale={isStale} />
+        <PokemonTypes
+          resource={deferredResource}
+          isStale={isStale}
+          order="forwards"
+        />
       </React.Suspense>
     </div>
   );
 }
+
+// order "forwards" to "backwards" or "together"
 
 export default Pokemon;
