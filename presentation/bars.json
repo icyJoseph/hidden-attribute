@@ -1,1 +1,71 @@
-[{"label":"landing","Script Evaluation":672,"Style & Layout":491,"Other":342,"Rendering":140,"Parse HTML & CSS":103,"Script Parsing & Compilation":39},{"label":"visibility","Script Evaluation":1761,"Other":554,"Style & Layout":493,"Parse HTML & CSS":104,"Script Parsing & Compilation":121,"Rendering":152,"Garbage Collection":30},{"label":"hidden","Script Evaluation":1764,"Style & Layout":497,"Other":567,"Script Parsing & Compilation":129,"Rendering":136,"Parse HTML & CSS":105,"Garbage Collection":31},{"label":"display","Script Evaluation":1809,"Style & Layout":565,"Other":565,"Rendering":167,"Script Parsing & Compilation":138,"Parse HTML & CSS":92,"Garbage Collection":31},{"label":"bitcoin","Script Evaluation":1687,"Other":648,"Style & Layout":627,"Rendering":291,"Script Parsing & Compilation":110,"Parse HTML & CSS":82,"Garbage Collection":19},{"label":"classic","Script Evaluation":1729,"Other":754,"Style & Layout":671,"Rendering":312,"Script Parsing & Compilation":122,"Parse HTML & CSS":101,"Garbage Collection":28},{"label":"all","Script Evaluation":1815,"Other":668,"Style & Layout":683,"Rendering":324,"Script Parsing & Compilation":155,"Parse HTML & CSS":85,"Garbage Collection":20}]
+[
+  {
+    "label": "landing",
+    "Script Evaluation": 672,
+    "Style & Layout": 491,
+    "Other": 342,
+    "Rendering": 140,
+    "Parse HTML & CSS": 103,
+    "Script Parsing & Compilation": 39
+  },
+  {
+    "label": "visibility",
+    "Script Evaluation": 1761,
+    "Other": 554,
+    "Style & Layout": 493,
+    "Parse HTML & CSS": 104,
+    "Script Parsing & Compilation": 121,
+    "Rendering": 152,
+    "Garbage Collection": 30
+  },
+  {
+    "label": "hidden",
+    "Script Evaluation": 1764,
+    "Style & Layout": 497,
+    "Other": 567,
+    "Script Parsing & Compilation": 129,
+    "Rendering": 136,
+    "Parse HTML & CSS": 105,
+    "Garbage Collection": 31
+  },
+  {
+    "label": "display",
+    "Script Evaluation": 1809,
+    "Style & Layout": 565,
+    "Other": 565,
+    "Rendering": 167,
+    "Script Parsing & Compilation": 138,
+    "Parse HTML & CSS": 92,
+    "Garbage Collection": 31
+  },
+  {
+    "label": "bitcoin",
+    "Script Evaluation": 1687,
+    "Other": 648,
+    "Style & Layout": 627,
+    "Rendering": 291,
+    "Script Parsing & Compilation": 110,
+    "Parse HTML & CSS": 82,
+    "Garbage Collection": 19
+  },
+  {
+    "label": "classic",
+    "Script Evaluation": 1729,
+    "Other": 754,
+    "Style & Layout": 671,
+    "Rendering": 312,
+    "Script Parsing & Compilation": 122,
+    "Parse HTML & CSS": 101,
+    "Garbage Collection": 28
+  },
+  {
+    "label": "all",
+    "Script Evaluation": 1815,
+    "Other": 668,
+    "Style & Layout": 683,
+    "Rendering": 324,
+    "Script Parsing & Compilation": 155,
+    "Parse HTML & CSS": 85,
+    "Garbage Collection": 20
+  }
+]
