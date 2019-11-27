@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:slides": "mdx-deck deck.mdx",
     "build:slides": "mdx-deck build deck.mdx",
-    "export:slides": "mdx-deck-export pdf deck.mdx"
+    "export:slides": "mdx-deck-export pdf deck.mdx",
+    "deploy:slides": "yarn build:slides && surge --domain https://flashy-nation.surge.sh --project ./dist"
   },
   "author": "",
   "license": "MIT",
