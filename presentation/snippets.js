@@ -115,7 +115,7 @@ export const booleanFlagSnippet = `function Tabs({ children }) {
     <>
       {controls}
       {React.Children.toArray(children).map(
-        (child, index) => index !== current && <div key={index}>{child}</div>
+        (child, index) => index === current && <div key={index}>{child}</div>
       )}
     </>
   );
