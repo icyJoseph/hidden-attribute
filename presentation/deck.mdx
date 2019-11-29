@@ -1,0 +1,247 @@
+export { condensed as theme } from "mdx-deck/themes";
+import { Appear, Notes, Image, useDeck, Head } from "mdx-deck";
+import { Horizontal } from "mdx-deck/layouts";
+import DevCard from "./devCard";
+import Charts from "./charts";
+import Timer from "./timer";
+import Renderer from "./renderToString";
+import {
+  hiddenSnippet,
+  displayNoneSnippet,
+  visibilitySnippet,
+  booleanFlagSnippet,
+  actionTiming
+} from "./snippets";
+import "./styles.css";
+import bars from "./bars.json";
+import highlights from "./highlights.json";
+import barsRecharts from "./bars-recharts.json";
+import highlightsRecharts from "./highlights-recharts.json";
+
+<Head>
+  <title>Evolve</title>
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <link rel="icon" href="./favicon.ico" />
+</Head>
+
+## ReactJS Göteborg
+
+Slides: [https://flashy-nation.surge.sh](https://flashy-nation.surge.sh)
+
+---
+
+<DevCard />
+
+---
+
+<img
+  src="./github_followers.jpg"
+  alt="Github followers"
+  width="400px"
+  height="400px"
+/>
+<Timer />
+
+---
+
+## Better performance 🦄
+
+<Appear>
+  <ul>
+    The setup:
+    <li>14 Endpoints</li>
+    <li>300+ parameters</li>
+    <li>200 - 1000 entries</li>
+    <li>Data dependent on other data</li>
+    <li>Tabs</li>
+  </ul>
+  <span>React + Redux Sagas + Immutable.js</span>
+</Appear>
+<Timer />
+
+---
+
+## Articles
+
+<img src="./medium_reads.png" alt="Medium Reads" width="900px" height="400px" />
+<Timer />
+
+- 📝 [useMemo and useCallback](https://medium.com/@icjoseph/usememo-usecallback-7d164b9485f1)
+
+- 📝 [Hidden Attribute](https://medium.com/evolve-technology/hide-that-da6264a7e1f)
+  - Inspiration from [here](https://github.com/oliviertassinari/react-swipeable-views/issues/453#issuecomment-417939459)
+
+---
+
+## Profiling
+
+<Renderer code={actionTiming} fontSize="1rem" />
+
+Action Timings + React Timings = User Timings
+
+---
+
+### User Timings
+
+<img src="./user_timings.png" alt="User Timings" />
+
+---
+
+## All comes down to
+
+<div className="centered-content">
+  <code className="large">HTML + CSS</code>
+</div>
+<Appear>
+  <span>
+    How do our <br />
+    React Components
+    <br />
+    contribute to the equation?
+  </span>
+</Appear>
+<Timer />
+
+---
+
+## Pixel Pipeline
+
+<img src="./frame_full.jpg" alt="Pixel Pipeline" width="900px" />
+
+📝 [Article](https://developers.google.com/web/fundamentals/performance/rendering/)
+
+<Timer />
+
+---
+
+## React Phases
+
+- Render
+- Commit
+
+<Appear>
+  <span>
+    Can we commit without triggering <br /> style, layout, etc.?
+  </span>
+</Appear>
+<Timer />
+
+---
+
+## Example
+
+### 3 Tabs
+
+- Landing
+- BitCoin rate, using [Victory Charts](https://formidable.com/open-source/victory/)
+- Pokemon type search 🔎
+
+📑 [Live](https://hidden-attribute.surge.sh/)
+
+<Timer />
+
+---
+
+## Tooling
+
+- Hidden Attribute [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)
+- CSS `display:none`
+- CSS `visibility:hidden`
+- lazy + Suspense
+- Fetch on Render
+
+<Timer />
+
+---
+
+## Options
+
+<ol>
+  <Appear>
+    <li>Render tabs using boolean flags </li>
+    <li>Using hidden attr</li>
+    <li>Using CSS display none</li>
+    <li>Using CSS visibility hidden</li>
+    <li>Everything on the same page (who likes tabs anyway)</li>
+  </Appear>
+</ol>
+<Timer />
+
+---
+
+## Hidden Attr
+
+<Renderer code={hiddenSnippet} fontSize="1rem" />
+
+---
+
+## Display None
+
+<Renderer code={displayNoneSnippet} fontSize="1rem" />
+
+---
+
+## Visibility
+
+<Renderer code={visibilitySnippet} fontSize="1rem" />
+
+---
+
+## Boolean Flag
+
+<Renderer code={booleanFlagSnippet} fontSize="1rem" />
+
+---
+
+## Does it work?
+
+---
+
+## FCP, FMP, PWA readiness
+
+<Charts data={highlights} />
+
+---
+
+## Main Thread Work
+
+<Charts data={bars} />
+
+---
+
+## Switch to Recharts
+
+- 📄 [Fix the slow render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render/) - Kent C. Dodds
+  - [Recharts](http://recharts.org/en-US/)
+
+---
+
+## FCP, FMP, PWA readiness - Recharts
+
+<Charts data={highlightsRecharts} />
+
+---
+
+## Main Thread Work - Recharts
+
+<Charts data={barsRecharts} />
+
+---
+
+## Reduce state
+
+- Navigation between tabs
+
+Since the Pokemon Tab, never really unmounts,<br/>
+we do not lose its state when switching away.
+
+> Manage state by getting rid of it!
+
+<Timer />
+
+---
+
+## On that Note...
+
+- useTransition
+- useDeferred

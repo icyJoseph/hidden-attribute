@@ -1,0 +1,24 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:slides": "mdx-deck deck.mdx",
+    "build:slides": "mdx-deck build deck.mdx",
+    "export:slides": "mdx-deck-export pdf deck.mdx",
+    "deploy:slides": "yarn build:slides && surge --domain https://flashy-nation.surge.sh --project ./dist"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@mdx-deck/export": "^2.3.2",
+    "mdx-deck": "^2.3.2",
+    "react-syntax-highlighter": "^10.3.0"
+  },
+  "dependencies": {
+    "@nivo/bar": "^0.59.2",
+    "swr": "^0.1.8"
+  }
+}

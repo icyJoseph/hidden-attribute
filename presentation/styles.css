@@ -1,0 +1,250 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+*[data-vanish="vanish"] {
+  animation: vanish 1s forwards;
+}
+
+@keyframes vanish {
+  to {
+    opacity: 0;
+  }
+}
+
+.fallback {
+  margin: 2em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 1;
+  align-self: center;
+  max-width: 80%;
+  font-size: 0.75em;
+}
+
+.centered-content,
+.organizations {
+  display: flex;
+  justify-content: center;
+}
+
+.centered-content > pre.large {
+  font-size: 2em;
+}
+
+.organizations > * {
+  margin: 1em;
+}
+
+.canvas-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+}
+
+.evolve-logo {
+  display: flex;
+  margin: 0.5em 0.25em;
+}
+
+.evolve-img {
+  opacity: 0;
+  margin: 0.5em 0.25em;
+}
+
+.evolve-canvas {
+  width: 100px;
+  height: 100px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.about {
+  display: flex;
+  /* background: white; */
+  /* color: black; */
+}
+
+.about-img,
+.about-desc,
+.org {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-img {
+  font-size: 0.75em;
+}
+
+.about-img > img {
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+}
+
+.org {
+  font-size: 0.75em;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.about-img > *,
+.org > * {
+  margin: 0.25em;
+}
+
+.org-img {
+  height: 2em;
+  width: 2em;
+}
+
+.about div {
+  padding: 0.25em;
+}
+
+.search-bar {
+  --buttonHeight: 2em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1em;
+  width: 100vw;
+  font-size: 0.75em;
+  color: white;
+}
+
+.search-bar > input {
+  border: none;
+  text-align: center;
+  background: transparent;
+  color: inherit;
+  width: 80%;
+  margin: 0 auto;
+  font-size: 2em;
+  border-bottom: 1px solid white;
+}
+
+.search-bar > button {
+  position: absolute;
+  border: 0;
+  border-radius: 8px;
+  background: white;
+  color: black;
+  font-size: inherit;
+  width: var(--buttonHeight);
+  left: 80%;
+  transform: translateY(calc(-2 * var(--buttonHeight)));
+  height: var(--buttonHeight);
+  cursor: pointer;
+  transition: 1s 0.25s ease-in-out;
+}
+
+.search-bar > input:focus,
+.search-bar > button:focus {
+  outline: none;
+}
+
+.search-bar > input::placeholder {
+  color: #313131;
+}
+
+.search-bar > input:not(:placeholder-shown) ~ button {
+  transform: translateY(0);
+}
+
+.screen-reader {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+/* Place Holder CSS */
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.75;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:-moz-placeholder {
+  color: #000;
+  opacity: 0.75;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+::-moz-placeholder {
+  color: #000;
+  opacity: 0.75;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:-ms-input-placeholder {
+  color: #000;
+  opacity: 0.75;
+  -ms-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:hover::-webkit-input-placeholder {
+  opacity: 0.95;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover:-moz-placeholder {
+  opacity: 0.95;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover::-moz-placeholder {
+  opacity: 0.95;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover:-ms-input-placeholder {
+  opacity: 0.95;
+  -ms-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:focus::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.55s ease-in-out;
+  transition: opacity 0.55s ease-in-out;
+}
+:focus:-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.55s ease-in-out;
+  transition: opacity 0.55s ease-in-out;
+}
+:focus::-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.55s ease-in-out;
+  transition: opacity 0.55s ease-in-out;
+}
+:focus:-ms-input-placeholder {
+  opacity: 0;
+  -ms-transition: opacity 0.55s ease-in-out;
+  transition: opacity 0.55s ease-in-out;
+}

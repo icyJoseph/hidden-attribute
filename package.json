@@ -1,13 +1,16 @@
 {
   "name": "hidden-attr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Using the hidden attribute to balance performance with user experience.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development parcel src/index.html --open",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist/*",
+    "lighthouse": "lighthouse \"http://localhost:5000\" --chrome-flags=\"--headless\" --output json --output-path ./results/\"$(git rev-parse --abbrev-ref HEAD)\"/\"$(date +%Y-%m-%d_%H-%M-%S.json)\"",
     "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "build:audit": "yarn clean && yarn build && concurrently --kill-others \"yarn build:serve\" \"yarn lighthouse\"",
+    "build:serve": "yarn serve -s ./dist",
     "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
@@ -17,13 +20,17 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "parcel-bundler": "^1.12.3"
+    "concurrently": "^5.0.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-robot": "^1.0.0",
+    "serve": "^11.2.0"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "overlayscrollbars": "^1.7.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "recharts": "^1.8.5",
     "victory": "^32.2.3"
   }
 }

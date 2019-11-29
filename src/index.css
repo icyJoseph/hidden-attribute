@@ -78,3 +78,9 @@ body {
   background-repeat: no-repeat;
   image-rendering: pixelated;
 }
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

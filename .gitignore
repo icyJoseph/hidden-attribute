@@ -3,5 +3,11 @@ build
 dist
 .cache
 **.png
+**.jpg
 yarn-error.log
 assets
+results
+stats
+victory-results
+recharts-results
+!**/*/evolve.png
