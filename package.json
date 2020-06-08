@@ -24,6 +24,7 @@
     "overlayscrollbars": "1.13.1",
     "react": "0.0.0-experimental-5faf377df",
     "react-dom": "0.0.0-experimental-5faf377df",
+    "recharts": "^1.8.5",
     "victory": "36.2.1"
   },
   "alias": {
