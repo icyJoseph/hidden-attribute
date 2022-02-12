@@ -16,15 +16,15 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "parcel": "2.3.1",
-    "concurrently": "^5.0.0"
+    "concurrently": "7.0.0",
+    "parcel": "2.3.1"
   },
   "dependencies": {
     "axios": "0.25.0",
     "overlayscrollbars": "1.13.1",
-    "react": "0.0.0-experimental-5faf377df",
-    "react-dom": "0.0.0-experimental-5faf377df",
-    "recharts": "^1.8.5",
+    "react": "0.0.0-experimental-64223fed8-20220210",
+    "react-dom": "0.0.0-experimental-64223fed8-20220210",
+    "recharts": "2.1.9",
     "victory": "36.2.1"
   },
   "alias": {

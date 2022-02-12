@@ -54,7 +54,7 @@ body {
 
 .scroll-btn {
   position: fixed;
-  bottom: -120px;
+  bottom: -128px;
   width: 64px;
   height: 64px;
   right: 2rem;
@@ -63,7 +63,7 @@ body {
 }
 
 .scroll-btn.active {
-  bottom: 25px;
+  bottom: 2rem;
 }
 
 .scroll-btn > span {

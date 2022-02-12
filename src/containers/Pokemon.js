@@ -10,8 +10,8 @@ const pokeService = axios.create({
   baseURL: "https://pokeapi.co/api/v2/type"
 });
 
-pokeService.interceptors.request.use(config => {
-  return new Promise(resolve => setTimeout(() => resolve(config), DELAY));
+pokeService.interceptors.request.use((config) => {
+  return new Promise((resolve) => setTimeout(() => resolve(config), DELAY));
 });
 
 function fetchPokemonByType(query) {
@@ -37,7 +37,8 @@ function fetchPokemonByType(query) {
 const PokemonTypes = ({ resource, isStale, order = "forwards" }) => {
   return (
     <div className={`pokemon-container ${isStale ? "stale" : ""}`}>
-      <React.SuspenseList revealOrder={order} tail={null}>
+      {/* <React.SuspenseList revealOrder={order} tail={"collapsed"|"hidden"}> */}
+      <React.SuspenseList revealOrder={order}>
         {resource
           .read()
           .slice(0, 25)
@@ -65,7 +66,7 @@ export function Pokemon() {
 
   const _ref = React.useRef();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const query = e.target.value;
     if (_ref.current) {
       _ref.current.cancel();
