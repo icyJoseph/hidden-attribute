@@ -2,28 +2,29 @@
   "name": "hidden-attr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development parcel src/index.html --open",
+    "dev": "parcel",
     "clean": "rm -rf dist",
-    "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "build": "parcel build src/index.html --public-url ./",
     "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
-    "parcel-bundler": "^1.12.3"
+    "parcel": "2.3.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "overlayscrollbars": "^1.7.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "victory": "^32.2.3"
+    "axios": "0.25.0",
+    "overlayscrollbars": "1.13.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "victory": "36.2.1"
+  },
+  "alias": {
+    "process": {
+      "global": "process"
+    }
   }
 }

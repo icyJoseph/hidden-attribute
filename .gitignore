@@ -1,7 +1,7 @@
 node_modules
 build
 dist
-.cache
+.parcel-cache
 **.png
 yarn-error.log
 assets
