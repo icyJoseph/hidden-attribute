@@ -23,7 +23,7 @@ const symbols = [
 
 const msDay = 1000 * 60 * 60 * 24;
 
-const tickFormat = t => {
+const tickFormat = (t) => {
   const today = new Date();
   const tickDate = new Date(t);
   const diff = new Date(today - tickDate).getTime();
@@ -47,7 +47,7 @@ export function Bitcoin() {
         }));
         return setData(asEntries);
       })
-      .catch(err => {
+      .catch((err) => {
         if (axios.isCancel(err)) {
           console.info(err.message);
         }
@@ -62,7 +62,7 @@ export function Bitcoin() {
 
   const yDomain = React.useMemo(
     () =>
-      [Math.min(...all) * 0.95, Math.max(...all) * 1.05].map(e =>
+      [Math.min(...all) * 0.95, Math.max(...all) * 1.05].map((e) =>
         Math.floor(e)
       ),
     [all]
@@ -75,13 +75,17 @@ export function Bitcoin() {
       <h4>
         Bitcoin price the last 31 days, <br /> in 1000 SEK.
       </h4>
+
       <span>Last: {Math.round(current / 1000)} x 1000 SEK</span>
+
       <VictoryChart style={{ parent: { height: "auto" } }}>
         <VictoryScatter
           data={data}
           domain={{ y: yDomain }}
-          labels={datum => Math.round(datum.y / 1000)}
-          symbol={datum => symbols[Math.round(datum.y) % 7]}
+          labels={({ datum }) => {
+            return Math.round(datum.y / 1000);
+          }}
+          symbol={(datum) => symbols[Math.round(datum.y) % 7]}
           size={7}
           style={{
             labels: {
@@ -91,7 +95,7 @@ export function Bitcoin() {
               fontFamily: "Press Start 2P"
             },
             data: {
-              fill: datum => colors[Math.round(datum.y) % 5]
+              fill: (datum) => colors[Math.round(datum.y) % 5]
             }
           }}
         />
