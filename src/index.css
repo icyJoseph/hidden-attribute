@@ -1,3 +1,5 @@
+@import "https://unpkg.com/nes.css@latest/css/nes.min.css";
+
 html {
   box-sizing: border-box;
   font-size: 14px;
