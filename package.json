@@ -7,13 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel",
     "clean": "rm -rf dist",
-    "build": "parcel build src/index.html --public-url ./",
+    "build": "parcel build src/index.html",
     "deploy": "yarn clean && yarn build && surge --domain https://hidden-attribute.surge.sh --project ./dist"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "parcel": "2.3.1"
+    "parcel": "2.3.2",
+    "process": "0.11.10"
   },
   "dependencies": {
     "axios": "0.25.0",
@@ -21,10 +22,5 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "victory": "36.2.1"
-  },
-  "alias": {
-    "process": {
-      "global": "process"
-    }
   }
 }
