@@ -1,6 +1,6 @@
 # Hidden Attribute
 
-Demonstrates how to take advatange of the HTML attribute `hidden`.
+Demonstrates how to take advantage of the HTML attribute `hidden`.
 
 ## Demo
 

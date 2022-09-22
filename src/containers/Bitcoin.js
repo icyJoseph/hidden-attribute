@@ -1,14 +1,9 @@
 import React from "react";
 import axios from "axios";
-import {
-  VictoryChart,
-  VictoryScatter,
-  VictoryAxis,
-  VictoryLabel
-} from "victory";
+import { VictoryChart, VictoryScatter, VictoryAxis } from "victory";
 
 const endpoint =
-  "https://api.coindesk.com/v1/bpi/historical/close.json?currency=SEK";
+  "https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=SEK&limit=31";
 
 const colors = ["#fff489", "#fa57c1", "#b166cc", "#7572ff", "#69a6f9"];
 const symbols = [
@@ -18,7 +13,7 @@ const symbols = [
   "triangleUp",
   "triangleDown",
   "diamond",
-  "plus"
+  "plus",
 ];
 
 const msDay = 1000 * 60 * 60 * 24;
@@ -36,15 +31,17 @@ export function Bitcoin() {
 
   React.useEffect(() => {
     const source = axios.CancelToken.source();
+
     axios
       .get(endpoint, {
-        cancelToken: source.token
+        cancelToken: source.token,
       })
-      .then(({ data: { bpi } }) => {
-        const asEntries = Object.entries(bpi).map(([x, y]) => ({
-          x,
-          y
+      .then(({ data: { Data } }) => {
+        const asEntries = Data.Data.map(({ time, close }) => ({
+          x: time * 1000,
+          y: close,
         }));
+
         return setData(asEntries);
       })
       .catch((err) => {
@@ -52,6 +49,7 @@ export function Bitcoin() {
           console.info(err.message);
         }
       });
+
     return () => source.cancel("Cancel BitCoin fetch");
   }, []);
 
@@ -78,7 +76,7 @@ export function Bitcoin() {
 
       <span>Last: {Math.round(current / 1000)} x 1000 SEK</span>
 
-      <VictoryChart style={{ parent: { height: "auto" } }}>
+      <VictoryChart style={{ parent: { height: "75vh" } }}>
         <VictoryScatter
           data={data}
           domain={{ y: yDomain }}
@@ -92,11 +90,11 @@ export function Bitcoin() {
               fontSize: 6,
               fill: "white",
               lineHeight: 5,
-              fontFamily: "Press Start 2P"
+              fontFamily: "Press Start 2P",
             },
             data: {
-              fill: (datum) => colors[Math.round(datum.y) % 5]
-            }
+              fill: (datum) => colors[Math.round(datum.y) % 5],
+            },
           }}
         />
         <VictoryAxis
@@ -107,12 +105,12 @@ export function Bitcoin() {
             tickLabels: {
               fontSize: 9,
               fontFamily: "Press Start 2P",
-              fill: "white"
+              fill: "white",
             },
             ticks: {
               size: 5,
-              stroke: "white"
-            }
+              stroke: "white",
+            },
           }}
         />
       </VictoryChart>
