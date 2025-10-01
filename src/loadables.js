@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 
 const Loading = () => <i className="nes-octocat animate" />;
 

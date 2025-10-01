@@ -1,4 +1,3 @@
-import React from "react";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
 import ScrollBars from "./components/ScrollBars";
