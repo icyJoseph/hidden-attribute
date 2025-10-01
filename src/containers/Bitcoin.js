@@ -2,7 +2,7 @@ import useSWRImmutable from "swr/immutable";
 import { VictoryChart, VictoryScatter, VictoryAxis } from "victory";
 
 const endpoint =
-  "http://httpbin.dev/bytes/30";
+  "https://httpbin.dev/bytes/30";
 
 const colors = ["#fff489", "#fa57c1", "#b166cc", "#7572ff", "#69a6f9"];
 const symbols = [
