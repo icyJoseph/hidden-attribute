@@ -1,4 +1,4 @@
-import React from "react";
+import useSWRImmutable from "swr/immutable";
 import { VictoryChart, VictoryScatter, VictoryAxis } from "victory";
 
 const endpoint =
@@ -15,32 +15,19 @@ const symbols = [
   "plus",
 ];
 
+async function fetcher() {
+  const res = await fetch(endpoint)
+
+  const buffer = await res.arrayBuffer()
+
+  const data = Array.from(new Uint8Array(buffer)).map((y, x) => ({ x, y }))
+
+  return data
+}
+
 
 export function Bitcoin() {
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    const controller = new AbortController()
-
-    fetch(endpoint, {
-      signal: controller.signal
-    })
-      .then(async (res) => {
-
-        const buffer = await res.arrayBuffer()
-
-        const data = Array.from(new Uint8Array(buffer)).map((y, x) => ({ x, y }))
-
-        return setData(data);
-      })
-      .catch((err) => {
-        if (controller.signal.aborted) {
-          console.info(err.message);
-        }
-      });
-
-    return () => controller.abort("Cancel BitCoin fetch");
-  }, []);
+  const { data } = useSWRImmutable("bytes", fetcher, { suspense: true })
 
   return (
     <div>

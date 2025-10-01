@@ -1,5 +1,3 @@
-import React from "react";
-
 // this could apply further styling to children
 export function Tab({ title, children }) {
   return (

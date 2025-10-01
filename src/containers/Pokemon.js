@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
 import useDebounce from "../hooks/useDebounce";
+import useSWR from "swr";
 
-const endpoint = "https://pokeapi.co/api/v2/type";
+const endpoint = "https://pokeapi.co/api/v2";
 
 const spriteUrl = id =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
@@ -12,32 +12,24 @@ const idFromUrl = url => {
   return id;
 };
 
+async function fetcher(query) {
+  const res = await fetch(`${endpoint}/${query}`)
+  const data = await res.json()
+  return data
+}
+
+
 export function Pokemon() {
+  const id = React.useId()
   const [query, changeQuery] = React.useState("fire");
   const debounced = useDebounce(query, 500);
-  const [data, setData] = React.useState([]);
 
-  React.useEffect(() => {
-    if (!debounced) return setData([]);
-    const source = axios.CancelToken.source();
-    axios
-      .get(`${endpoint}/${debounced}`, {
-        cancelToken: source.token
-      })
-      .then(({ data: { pokemon } }) => {
-        return setData(pokemon);
-      })
-      .catch(err => {
-        if (axios.isCancel(err)) {
-          console.info(err.message);
-        }
-      });
-    return () => source.cancel("Cancel Pokemon fetch");
-  }, [debounced]);
+  const { data } = useSWR(`/type/${query}`, fetcher, { suspense: true })
 
   return (
     <div>
       <input
+        id={id}
         type="text"
         className="nes-input is-dark"
         value={query}
@@ -45,7 +37,7 @@ export function Pokemon() {
       />
       <p className="nes-text is-success">Query: {debounced}</p>
       <div className="pokemon-container">
-        {data.slice(0, 25).map(({ pokemon: { name, url } }, index) => {
+        {data.pokemon.slice(0, 25).map(({ pokemon: { name, url } }, index) => {
           const imgSrc = spriteUrl(idFromUrl(url));
           const showImg = index % 2 === 0;
           return (

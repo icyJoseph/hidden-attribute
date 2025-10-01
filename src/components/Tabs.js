@@ -24,14 +24,18 @@ export function Tabs({ children }) {
   return (
     <>
       <div className="tab-controls">{controls}</div>
+
       {React.Children.toArray(children).map((child, index) => (
-        <div
+        <React.Activity
           key={index}
-          hidden={index !== current}
-          className="nes-container with-title is-dark"
+          mode={index !== current ? 'hidden' : 'visible'}
         >
-          {child}
-        </div>
+          <div
+            className="nes-container with-title is-dark"
+          >
+            {child}
+          </div>
+        </React.Activity>
       ))}
     </>
   );
