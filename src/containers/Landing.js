@@ -2,9 +2,12 @@ export function Landing() {
   return (
     <>
       <p>
-        While you were reading this, Bitcoin and Pokemon Data were fetched.
-        React has also processed the 2nd and 3rd tab, but the browser is not
-        rendering them.
+        While you were reading this, random Bytes and Pokemon Data were fetched.
+      </p>
+
+      <p>
+        React has processed the other tabs, but their content is not
+        painted yet.
       </p>
 
       <p>

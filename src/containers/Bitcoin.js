@@ -1,4 +1,4 @@
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 import { VictoryChart, VictoryScatter, VictoryAxis } from "victory";
 
 const endpoint =
@@ -20,14 +20,21 @@ async function fetcher() {
 
   const buffer = await res.arrayBuffer()
 
-  const data = Array.from(new Uint8Array(buffer)).map((y, x) => ({ x, y }))
+  const data = Array.from(new Uint8Array(buffer))
+    .map((y, x) => ({ x, y }))
 
   return data
 }
 
 
 export function Bitcoin() {
-  const { data } = useSWRImmutable("bytes", fetcher, { suspense: true })
+  const { data, mutate } = useSWR("bytes", fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+    suspense: true
+  })
+
 
   return (
     <div>
@@ -35,7 +42,16 @@ export function Bitcoin() {
         Thirty random bytes
       </h4>
 
-      <VictoryChart style={{ parent: { height: "75vh" } }}>
+      <button
+        type="button"
+        className="nes-badge reload-btn"
+        onClick={() => {
+          mutate();
+        }}
+      >reload</button>
+
+
+      <VictoryChart style={{ parent: { height: "50vh" } }}>
         <VictoryScatter
           data={data}
           domain={{ y: [0, 255] }}
@@ -55,6 +71,7 @@ export function Bitcoin() {
               fill: (datum) => colors[Math.round(datum.y) % 5],
             },
           }}
+          animate
         />
         <VictoryAxis
           tickCount={5}

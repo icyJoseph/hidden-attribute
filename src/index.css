@@ -29,6 +29,10 @@ body {
   text-align: center;
 }
 
+.container h1 {
+  font-size: 2rem;
+}
+
 .tab-controls {
   text-align: center;
   margin: 2rem 0;
@@ -79,4 +83,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   image-rendering: pixelated;
+}
+
+.reload-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  text-decoration: underline;
 }
