@@ -1,9 +1,8 @@
-import React from "react";
-import axios from "axios";
+import useSWR from "swr";
 import { VictoryChart, VictoryScatter, VictoryAxis } from "victory";
 
 const endpoint =
-  "https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=SEK&limit=31";
+  "https://httpbin.dev/bytes/30";
 
 const colors = ["#fff489", "#fa57c1", "#b166cc", "#7572ff", "#69a6f9"];
 const symbols = [
@@ -16,74 +15,50 @@ const symbols = [
   "plus",
 ];
 
-const msDay = 1000 * 60 * 60 * 24;
+async function fetcher() {
+  const res = await fetch(endpoint)
 
-const tickFormat = (t) => {
-  const today = new Date();
-  const tickDate = new Date(t);
-  const diff = new Date(today - tickDate).getTime();
-  const days = Math.floor(diff / msDay);
-  return `${days} ${days > 1 ? "days" : "day"} ago`;
-};
+  const buffer = await res.arrayBuffer()
+
+  const data = Array.from(new Uint8Array(buffer))
+    .map((y, x) => ({ x, y }))
+
+  return data
+}
+
 
 export function Bitcoin() {
-  const [data, setData] = React.useState([]);
+  const { data, mutate } = useSWR("bytes", fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+    suspense: true
+  })
 
-  React.useEffect(() => {
-    const source = axios.CancelToken.source();
-
-    axios
-      .get(endpoint, {
-        cancelToken: source.token,
-      })
-      .then(({ data: { Data } }) => {
-        const asEntries = Data.Data.map(({ time, close }) => ({
-          x: time * 1000,
-          y: close,
-        }));
-
-        return setData(asEntries);
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.info(err.message);
-        }
-      });
-
-    return () => source.cancel("Cancel BitCoin fetch");
-  }, []);
-
-  const all = React.useMemo(
-    () => data.reduce((prev, { y }) => [...prev, y], []),
-    [data]
-  );
-
-  const yDomain = React.useMemo(
-    () =>
-      [Math.min(...all) * 0.95, Math.max(...all) * 1.05].map((e) =>
-        Math.floor(e)
-      ),
-    [all]
-  );
-
-  const [current] = all.slice(-1);
 
   return (
     <div>
       <h4>
-        Bitcoin price the last 31 days, <br /> in 1000 SEK.
+        Thirty random bytes
       </h4>
 
-      <span>Last: {Math.round(current / 1000)} x 1000 SEK</span>
+      <button
+        type="button"
+        className="nes-badge reload-btn"
+        onClick={() => {
+          mutate();
+        }}
+      >reload</button>
 
-      <VictoryChart style={{ parent: { height: "75vh" } }}>
+
+      <VictoryChart style={{ parent: { height: "50vh" } }}>
         <VictoryScatter
           data={data}
-          domain={{ y: yDomain }}
+          domain={{ y: [0, 255] }}
           labels={({ datum }) => {
-            return Math.round(datum.y / 1000);
+            return Math.round(100 * (datum.y / 255));
           }}
-          symbol={(datum) => symbols[Math.round(datum.y) % 7]}
+          symbol={(datum) => symbols[Math.round(datum.x) % 7]}
           size={7}
           style={{
             labels: {
@@ -96,10 +71,10 @@ export function Bitcoin() {
               fill: (datum) => colors[Math.round(datum.y) % 5],
             },
           }}
+          animate
         />
         <VictoryAxis
-          tickCount={2}
-          tickFormat={tickFormat}
+          tickCount={5}
           style={{
             axis: { stroke: "white" },
             tickLabels: {

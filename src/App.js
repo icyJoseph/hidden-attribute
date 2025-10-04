@@ -1,4 +1,3 @@
-import React from "react";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
 import ScrollBars from "./components/ScrollBars";
@@ -14,13 +13,13 @@ export function App() {
     <ScrollBars>
       <div className="container">
         <div className="nes-container is-dark">
-          <h1 className="nes-text with-word-break">Hidden Attr</h1>
+          <h1 className="nes-text with-word-break">Activity API</h1>
         </div>
         <Tabs>
           <Tab label={<LandingLabel />} title="Landing" importance="is-primary">
             <SuspenseLanding />
           </Tab>
-          <Tab label={<BitCoinLabel />} title="Bitcoin" importance="is-success">
+          <Tab label={<BitCoinLabel />} title="Bytes" importance="is-success">
             <SuspenseBitcoin />
           </Tab>
           <Tab label={<PokemonLabel />} title="Pokemon" importance="is-error">
